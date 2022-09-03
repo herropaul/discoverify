@@ -1,18 +1,17 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { getAuthToken } from './api/artists/artists';
-import './App.css';
+import { getArtistById } from './api/artists/artists';
+import { getAuthToken } from './api/spotifyConfig';
+import { Flex } from '@chakra-ui/react';
+import SearchInput from '../src/features/search/SearchInput';
 
 function App() {
 
-  useEffect(() => {
-    getAuthToken();
-  }, [])
-
   return (
-    <div className="App">
-      Hello
-    </div>
+    <Flex direction="column" textAlign="center">
+      Discoverify app
+      <SearchInput/>
+    </Flex>
   );
 }
 

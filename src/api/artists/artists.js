@@ -1,21 +1,28 @@
 import axios from "axios";
+import { getAuthToken } from "../spotifyConfig";
 
-const client_id = process.env.REACT_APP_CLIENT_ID;
-const client_secret = process.env.REACT_APP_CLIENT_SECRET;
+export const getArtistById = async () => {
+  // 4pb4rqWSoGUgxm63xmJ8xc <- artist id
+  const access_token = await getAuthToken();
+  console.log('Access token: ' + access_token);
+  return access_token;
 
-export const getAuthToken = async () => {
-  fetch('https://accounts.spotify.com/api/token', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        Authorization: 'Basic ' + btoa(client_id + ':' + client_secret),
-    },
-    body: 'grant_type=client_credentials',
-})
-    .then((result) => result.json())
-    .then((data) => {
-      console.log(data)
-      return data;
-    })
-    .catch((error) => console.log('Error: ', error));
+  //const api_url = `https://api.spotify.com/v1/artists/${artist_id}`;
+
+  /*
+  try{
+    const response = fetch(api_url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+        'Content-Type': 'application/json',
+      }
+    });
+    console.log(response.data);
+    return response.data
+  }
+  catch(e){
+    console.log("Error: ", e)
+  }
+  */
 }
