@@ -5,6 +5,7 @@ import './SearchInput.css'
 
 export default function SearchInput() {
   const [query, setQuery] = useState("");
+  //const [artists, setArtists] = useState({});
   const client_id = process.env.REACT_APP_CLIENT_ID;
   const client_secret = process.env.REACT_APP_CLIENT_SECRET;
 
@@ -26,7 +27,8 @@ export default function SearchInput() {
       spotify.setAccessToken(token);
       spotify.searchArtists(query, {limit: 10})
       .then((data) => {
-        console.log('Search results: ', data)
+        //setArtists(data);
+        console.log('Search results: ', data.artists.items)
       })
     })
     .catch((error) => console.log('Error: ', error));
