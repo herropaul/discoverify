@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { ChakraProvider } from '@chakra-ui/react';
 import { store } from './app/store';
 import App from './App';
-//import './index.css';
+import './index.css';
 
 const container = document.getElementById('root');
 const root = createRoot(container);

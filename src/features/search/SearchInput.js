@@ -1,38 +1,14 @@
 import { Input, Flex, FormControl, Button } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
+import { getArtistByQuery } from './searchSlice';
 import SpotifyWebApi from 'spotify-web-api-js';
 import './SearchInput.css'
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function SearchInput() {
   const [query, setQuery] = useState("");
-  //const [artists, setArtists] = useState({});
-  const client_id = process.env.REACT_APP_CLIENT_ID;
-  const client_secret = process.env.REACT_APP_CLIENT_SECRET;
-
-  const getArtistByQuery = async (query) => {
-    await fetch('https://accounts.spotify.com/api/token', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        Authorization: 'Basic ' + btoa(client_id + ':' + client_secret),
-    },
-    body: 'grant_type=client_credentials',
-})
-    .then((result) => result.json())
-    .then((data) => {
-      //console.log(data?.access_token)
-      const token = data?.access_token;
-      const spotify = new SpotifyWebApi();
-
-      spotify.setAccessToken(token);
-      spotify.searchArtists(query, {limit: 10})
-      .then((data) => {
-        //setArtists(data);
-        console.log('Search results: ', data.artists.items)
-      })
-    })
-    .catch((error) => console.log('Error: ', error));
-  }
+  const artists = useSelector(state => state.artistsSlice.artists)
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setQuery(e.target.value);
@@ -40,7 +16,8 @@ export default function SearchInput() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getArtistByQuery(query);
+    dispatch(getArtistByQuery(query));
+    console.log(artists);
     setQuery("");
   }
 
