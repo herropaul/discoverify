@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Image, Text } from "@chakra-ui/react";
+import { Flex, Image, Text, Container } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
 export default function Grid() {
@@ -7,9 +7,9 @@ export default function Grid() {
   const mainArtist = artists[0]; // Artist object
 
   return (
-    <Flex bg="blue.100" direction="column" alignItems="center">
+    <Container maxH="lg" bg="blue.100" alignItems="center">
       {artists.length ? (
-        <Flex>
+        <Flex flexDir="column">
           <Image
             boxSize="150px"
             borderRadius="full"
@@ -18,8 +18,8 @@ export default function Grid() {
           <Text fontSize="3xl">{mainArtist.name}</Text>
         </Flex>
       ) : (
-        <Flex>No worky</Flex>
+        <Flex className="text-3xl font-bold">No worky</Flex>
       )}
-    </Flex>
+    </Container>
   );
 }
