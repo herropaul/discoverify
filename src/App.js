@@ -1,5 +1,5 @@
 import React, {useState}from 'react';
-import { Input, Flex, FormControl, Button } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
 import SpotifyWebApi from 'spotify-web-api-js';
 import './App.css'
 import SearchInput from '../src/features/search/SearchInput';
@@ -11,7 +11,7 @@ function App() {
   // Else, we keep the search input display and display the Grid data with the artists
   return (
     <div className='App'>
-      Discoverify
+      <Text className="text-3xl font-mono font-bold mt-4">Discoverify</Text>
       <SearchInput/>
       <Grid/>
     </div>

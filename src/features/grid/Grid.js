@@ -1,25 +1,28 @@
 import React from "react";
 import { Flex, Image, Text, Container } from "@chakra-ui/react";
+import ArtistCard from "./ArtistCard";
 import { useSelector } from "react-redux";
 
 export default function Grid() {
+
   const artists = useSelector((state) => state.artistsSlice.artists);
-  const mainArtist = artists[0]; // Artist object
+  //const mainArtist = artists[0]; 
 
   return (
-    <Container maxH="lg" bg="blue.100" alignItems="center">
+    // Grid Container
+    <Flex className="items-center max-w-lg md: max-w-3xl lg: max-w-5xl">
       {artists.length ? (
-        <Flex flexDir="column">
-          <Image
-            boxSize="150px"
-            borderRadius="full"
-            src={mainArtist.images[0].url}
-          />
-          <Text fontSize="3xl">{mainArtist.name}</Text>
-        </Flex>
+        <div className="w-full mx-4">
+          {artists.map((artist) => {
+            if(artist.images.length === 0) {
+              return <ArtistCard image="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" name={artist.name}/>
+            }
+            return <ArtistCard image={artist.images[0].url} name={artist.name}/>
+          })}
+        </div>
       ) : (
-        <Flex className="text-3xl font-bold">No worky</Flex>
+        <Flex className="text-4xl font-bold"></Flex>
       )}
-    </Container>
+    </Flex>
   );
 }
