@@ -1,4 +1,5 @@
 import { Input, Flex, FormControl, Button } from '@chakra-ui/react'
+import {SearchIcon} from '@chakra-ui/icons';
 import React, { useState, useEffect} from 'react'
 import { getArtistByQuery } from './searchSlice';
 import SpotifyWebApi from 'spotify-web-api-js';
@@ -24,9 +25,9 @@ export default function SearchInput() {
   return (
     <Flex textAlign="center" m={5}>
         <form onSubmit={handleSubmit}>
-            <FormControl>
-                <Input mb={5} type="text" onChange={handleChange} placeholder='Enter artist' size="md"/>
-                <Button type="submit">Click Me</Button>
+            <FormControl className=' flex flex-row'>
+                <Input mb={5} type="text" onChange={handleChange} placeholder='Enter artist' _placeholder={{ opacity: 1, color: 'gray.500' }} size="md"/>
+                <Button mx={1} colorScheme="green" leftIcon={<SearchIcon/>} type="submit">Search</Button>
             </FormControl>
         </form>
     </Flex>
