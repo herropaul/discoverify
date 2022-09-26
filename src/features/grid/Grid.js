@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Image, Text, Container } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import ArtistCard from "./ArtistCard";
 import { useSelector } from "react-redux";
 

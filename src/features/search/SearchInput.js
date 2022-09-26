@@ -1,8 +1,7 @@
 import { Input, Flex, FormControl, Button } from '@chakra-ui/react'
 import {SearchIcon} from '@chakra-ui/icons';
-import React, { useState, useEffect} from 'react'
+import React, { useState} from 'react'
 import { getArtistByQuery } from './searchSlice';
-import SpotifyWebApi from 'spotify-web-api-js';
 import './SearchInput.css'
 import { useDispatch, useSelector } from 'react-redux';
 

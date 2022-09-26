@@ -1,6 +1,5 @@
-import React, {useState}from 'react';
+import React from 'react';
 import { Text } from '@chakra-ui/react';
-import SpotifyWebApi from 'spotify-web-api-js';
 import './App.css'
 import SearchInput from '../src/features/search/SearchInput';
 import Grid from './features/grid/Grid';
