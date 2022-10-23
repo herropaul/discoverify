@@ -3,11 +3,14 @@ import {SearchIcon} from '@chakra-ui/icons';
 import React, { useState} from 'react'
 import { getArtistByQuery } from './searchSlice';
 import './SearchInput.css'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { updateValue } from '../grid/updateSlice';
 
 export default function SearchInput() {
   const [query, setQuery] = useState("");
-  const artists = useSelector(state => state.artistsSlice.artists)
+  const navigate = useNavigate();
+  //const artists = useSelector(state => state.artistsSlice.artists)
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -17,8 +20,9 @@ export default function SearchInput() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getArtistByQuery(query));
-    console.log(artists);
-    setQuery("");
+    dispatch(updateValue(query));
+    //setQuery("");
+    navigate("/results");
   }
 
   return (

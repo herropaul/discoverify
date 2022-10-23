@@ -1,28 +1,45 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Flex } from "@chakra-ui/react";
-import ArtistCard from "./ArtistCard";
-import { useSelector } from "react-redux";
+import TrackList from "./TrackList";
+import ArtistsGrid from "./ArtistsGrid";
+import {useSelector} from 'react-redux';
 
 export default function Grid() {
 
+  const [isNarrowScreen, setIsNarrowScreen] = useState(false);
   const artists = useSelector((state) => state.artistsSlice.artists);
-  //const mainArtist = artists[0]; 
+  //const artistName = useSelector((state) => state.update.value.text);
+
+  useEffect(() => {
+
+    // set intial value
+    const mediaWatcher = window.matchMedia("(max-width: 1280px)")
+    setIsNarrowScreen(mediaWatcher.matches);
+
+    // watch for updates
+    function updateIsNarrowScreen (e) {
+      setIsNarrowScreen(e.matches);
+    }
+    mediaWatcher.addEventListener('change', updateIsNarrowScreen);
+
+    // clean up update 
+    return function cleanup() {
+      mediaWatcher.removeEventListener('change', updateIsNarrowScreen);
+    }
+  }, []);
 
   return (
     // Grid Container
-    <Flex className="items-center max-w-lg md:max-w-3xl lg:max-w-5xl">
-      {artists.length ? (
-        <div className="w-full mx-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {artists.map((artist) => {
-            if(artist.images.length === 0) {
-              return <ArtistCard key={artist.id} image="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" name={artist.name} type={artist.type}/>
-            }
-            return <ArtistCard key={artist.id} image={artist.images[0].url} name={artist.name} type={artist.type}/>
-          })}
-        </div>
-      ) : (
-        <Flex className="text-4xl font-bold"></Flex>
-      )}
-    </Flex>
+    <div className="">
+      {isNarrowScreen 
+      ?
+      <ArtistsGrid artists={artists}/>
+      :
+      <Flex>
+        <ArtistsGrid artists={artists}/>
+        <TrackList artists={artists}/>
+      </Flex>
+      }
+    </div>
   );
 }

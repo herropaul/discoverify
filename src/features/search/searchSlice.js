@@ -31,7 +31,7 @@ export const getArtistByQuery = createAsyncThunk(
         const spotify = new SpotifyWebApi();
 
         spotify.setAccessToken(token);
-        return spotify.searchArtists(query, { limit: 10 });
+        return spotify.searchArtists(query, { limit: 8, offset: 0 });
       })
       .then((response) => response?.artists?.items);
   }
@@ -46,7 +46,7 @@ const artistsSlice = createSlice({
     });
     builder.addCase(getArtistByQuery.fulfilled, (state, action) => {
       state.loading = false;
-      console.log("Payload: " + action.payload);
+      //console.log("Payload: " + action.payload);
       state.artists = action.payload;
       state.error = "";
     });

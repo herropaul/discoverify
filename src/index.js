@@ -5,15 +5,32 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { store } from './app/store';
 import App from './App';
 import './index.css';
+import ErrorPage from './ErrorPage';
+import Grid from './features/grid/Grid';
+import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App/>,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/results",
+        element: <Grid/>,
+      }
+    ]
+  },
+]);
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ChakraProvider>
-        <App />
+        <RouterProvider router={router}/>
       </ChakraProvider>
     </Provider>
   </React.StrictMode>
