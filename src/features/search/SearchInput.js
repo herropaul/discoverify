@@ -11,7 +11,6 @@ import { updateValue } from '../grid/updateSlice';
 export default function SearchInput() {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
-  //const artists = useSelector(state => state.artistsSlice.artists)
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -19,12 +18,15 @@ export default function SearchInput() {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(getArtistByQuery(query));
-    dispatch(getTrackByQuery(query));
-    //dispatch(updateValue(query));
-    //setQuery("");
-    navigate("/results");
+    if (query === ""){
+      navigate("/");
+    }
+    else{
+      e.preventDefault();
+      dispatch(getArtistByQuery(query));
+      dispatch(getTrackByQuery(query));
+      navigate("/results");
+    }
   }
 
   return (
