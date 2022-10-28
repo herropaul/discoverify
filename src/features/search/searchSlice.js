@@ -10,7 +10,7 @@ const initialState = {
   error: "",
 };
 
-const fetchRequest = () => {
+export const fetchRequest = () => {
   return fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
     headers: {
@@ -37,6 +37,7 @@ export const getArtistByQuery = createAsyncThunk(
   }
 );
 
+
 const artistsSlice = createSlice({
   name: "artists",
   initialState,
@@ -58,4 +59,6 @@ const artistsSlice = createSlice({
   },
 });
 
+
 export default artistsSlice.reducer;
+

@@ -7,7 +7,8 @@ import {useSelector} from 'react-redux';
 export default function Grid() {
 
   const [isNarrowScreen, setIsNarrowScreen] = useState(false);
-  const artists = useSelector((state) => state.artistsSlice.artists);
+  const {artists, loading, error} = useSelector((state) => state?.artistsSlice);
+  const tracks = useSelector((state) => state.tracksSlice.tracks);
   //const artistName = useSelector((state) => state.update.value.text);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function Grid() {
       :
       <Flex>
         <ArtistsGrid artists={artists}/>
-        <TrackList artists={artists}/>
+        <TrackList artists={artists} tracks={tracks}/>
       </Flex>
       }
     </div>

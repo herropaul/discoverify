@@ -2,6 +2,7 @@ import { Input, Flex, FormControl, Button } from '@chakra-ui/react'
 import {SearchIcon} from '@chakra-ui/icons';
 import React, { useState} from 'react'
 import { getArtistByQuery } from './searchSlice';
+import { getTrackByQuery } from '../grid/trackSlice';
 import './SearchInput.css'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +21,8 @@ export default function SearchInput() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getArtistByQuery(query));
-    dispatch(updateValue(query));
+    dispatch(getTrackByQuery(query));
+    //dispatch(updateValue(query));
     //setQuery("");
     navigate("/results");
   }
