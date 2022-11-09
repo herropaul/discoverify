@@ -1,17 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import TrackCard from './TrackCard'
 import { Flex, Text, Image } from '@chakra-ui/react'
+import {useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getTrackById } from './trackSlice';
 
-export default function TrackList({artists, tracks}) {
+export default function TrackList({artists}) {
 
   //const [mainArtist, setMainArtist] = useState("");
+  const dispatch = useDispatch();
+  const {tracks, loading, error} = useSelector((state) => state.tracksSlice);
+  const payload = {
+    artistID: "4pb4rqWSoGUgxm63xmJ8xc",
+    countryID: "US",
+  }
+
+  useEffect(() => {
+    dispatch(getTrackById(payload));
+    //console.log(tracks);
+  },[])
+
 
   return (
     <Flex overflowX="scroll" className="bg-red-200" 
     h="32rem" w="25rem"
     mt={5} ml="5rem"
     >
-      {artists.length && tracks.length ? 
+      {artists.length ? 
       (
         <div className=' bg-red-300 w-full '>
         <Text className="mt-3 font-mono font-bold text-xl mb-5">Tracks</Text>

@@ -8,9 +8,10 @@ const initialState = {
     error: "",
 };
 
-export const getTrackByQuery = createAsyncThunk(
-    "grid/getTrackByQuery",
-    (query) => {
+export const getTrackById = createAsyncThunk(
+    "grid/getTrackById",
+    (payload) => {
+      const {artistID, countryID} = payload;
       return fetchRequest()
         .then((result) => result.json())
         .then((data) => {
@@ -18,9 +19,9 @@ export const getTrackByQuery = createAsyncThunk(
           const spotify = new SpotifyWebApi();
   
           spotify.setAccessToken(token);
-          return spotify.searchTracks(query, { limit: 5, offset: 0 });
+          return spotify.getArtistTopTracks(artistID, countryID);
         })
-        .then((response) => response?.tracks?.items);
+        .then((response) => response?.tracks);
     }
 );
 
@@ -28,16 +29,16 @@ const tracksSlice = createSlice({
     name: "tracks",
     initialState,
     extraReducers: (builder) => {
-      builder.addCase(getTrackByQuery.pending, (state) => {
+      builder.addCase(getTrackById.pending, (state) => {
         state.loading = true;
       });
-      builder.addCase(getTrackByQuery.fulfilled, (state, action) => {
+      builder.addCase(getTrackById.fulfilled, (state, action) => {
         state.loading = false;
         //console.log("Payload: " + action.payload);
         state.tracks = action.payload;
         state.error = "";
       });
-      builder.addCase(getTrackByQuery.rejected, (state, action) => {
+      builder.addCase(getTrackById.rejected, (state, action) => {
         state.loading = false;
         state.tracks = [];
         state.error = action.error.message;
