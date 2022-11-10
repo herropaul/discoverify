@@ -12,11 +12,11 @@ export default function ArtistsGrid({artists}) {
           {artists.map((artist) => {
             if(artist.images.length === 0) {
               return (
-                <ArtistCard key={artist.id} image="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" name={artist.name} type={artist.type}/>
+                <ArtistCard key={artist.id} id={artist.id} image="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" name={artist.name} type={artist.type}/>
               )
             }
             return (
-              <ArtistCard key={artist.id} image={artist.images[0].url} name={artist.name} type={artist.type}/>
+              <ArtistCard key={artist.id} id={artist.id} image={artist.images[0].url} name={artist.name} type={artist.type}/>
             )
           })}
         </div>

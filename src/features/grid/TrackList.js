@@ -25,7 +25,7 @@ export default function TrackList({artists}) {
 
 
   return (
-    <Flex overflowX="scroll" className="bg-red-200" 
+    <Flex overflowX="scroll" sx={{scrollbarWidth: "none"}} className="bg-red-200" 
     h="32rem" w="25rem"
     mt={5} ml="5rem"
     >

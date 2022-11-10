@@ -1,6 +1,10 @@
 .App {
   text-align: center;
   background: #F5F8FA;
+  /*
+  background: rgb(34,193,195);
+  background: linear-gradient(0deg, rgba(34,193,195,1) 6%, rgba(84,137,217,1) 44%, rgba(130,85,237,1) 78%, rgba(165,45,253,1) 100%);
+  */
   height: 100vh;
 }
 
