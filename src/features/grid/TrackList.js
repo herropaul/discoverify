@@ -10,15 +10,15 @@ export default function TrackList({artists}) {
   //const [mainArtist, setMainArtist] = useState("");
   const dispatch = useDispatch();
   const {tracks, loading, error} = useSelector((state) => state.tracksSlice);
-  const payload = {
-    artistID: "4pb4rqWSoGUgxm63xmJ8xc",
-    countryID: "US",
-  }
 
   useEffect(() => {
+    const payload = {
+      artistID: artists[0].id,
+      countryID: "US",
+    }
     dispatch(getTrackById(payload));
     //console.log(tracks);
-  },[])
+  },[dispatch, artists])
 
 
   return (
