@@ -12,11 +12,14 @@ export default function TrackList({artists}) {
   const {tracks, loading, error} = useSelector((state) => state.tracksSlice);
 
   useEffect(() => {
+    if(artists.length){
     const payload = {
       artistID: artists[0].id,
       countryID: "US",
     }
     dispatch(getTrackById(payload));
+  }
+  return;
     //console.log(tracks);
   },[dispatch, artists])
 
