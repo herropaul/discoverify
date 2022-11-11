@@ -11,7 +11,7 @@ function App() {
   return (
       <div className='App'>
         <Link to="/">
-          <Text className="text-3xl font-mono font-bold mt-4">Discoverify</Text>
+          <Text className="text-3xl font-mono font-bold mt-4 text-center">Discoverify</Text>
         </Link>
         <SearchInput/>
         <Outlet/>

@@ -37,7 +37,7 @@ export default function Grid() {
       ?
       <ArtistsGrid artists={artists}/>
       :
-      <Flex>
+      <Flex className="">
         <ArtistsGrid artists={artists}/>
         <TrackList artists={artists}/> 
       </Flex>

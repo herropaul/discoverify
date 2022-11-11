@@ -32,7 +32,7 @@ export default function TrackList({artists}) {
       {artists.length ? 
       (
         <div className=' bg-red-300 w-full '>
-        <Text className="mt-3 font-mono font-bold text-xl mb-5">Tracks</Text>
+        <Text className="mt-3 mb-5 font-mono font-bold text-xl text-center ">Tracks</Text>
         {tracks.map((track) => {
           if(track.album.images === 0){
             return(
