@@ -1,5 +1,6 @@
 .App {
-  background: #F5F8FA;
+  background: #121212;
+  /*background: #F5F8FA;*/
   /*
   background: rgb(34,193,195);
   background: linear-gradient(0deg, rgba(34,193,195,1) 6%, rgba(84,137,217,1) 44%, rgba(130,85,237,1) 78%, rgba(165,45,253,1) 100%);
@@ -7,37 +8,3 @@
   height: 100vh;
 }
 
-.App-logo {
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
-}
-
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: rgb(112, 76, 182);
-}
-
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}

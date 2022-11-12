@@ -32,7 +32,7 @@ export default function SearchInput() {
     <Flex textAlign="center" m={0}>
         <form onSubmit={handleSubmit}>
             <FormControl className=' flex flex-row'>
-                <Input mb={5} type="text" onChange={handleChange} placeholder='Enter artist' _placeholder={{ opacity: 1, color: 'gray.500' }} size="md"/>
+                <Input color="white" borderColor="#07d88c" mb={5} type="text" onChange={handleChange} placeholder='Enter artist' _placeholder={{ opacity: 1, color: 'white' }} size="md"/>
                 <Button mx={1} colorScheme="green" leftIcon={<SearchIcon/>} type="submit">Search</Button>
             </FormControl>
         </form>

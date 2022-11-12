@@ -25,14 +25,14 @@ export default function TrackList({artists}) {
 
 
   return (
-    <Flex overflowX="scroll" sx={{scrollbarWidth: "none"}} className="bg-red-200" 
+    <Flex overflowX="scroll" sx={{scrollbarWidth: "none"}} className="" 
     h="32rem" w="25rem"
     mt={5} ml="5rem"
     >
       {artists.length ? 
       (
-        <div className=' bg-red-300 w-full '>
-        <Text className="mt-3 mb-5 font-mono font-bold text-xl text-center ">Tracks</Text>
+        <div className='w-full '>
+        <Text className="mt-3 mb-5 font-bold text-xl text-center text-white" style={{fontFamily: "Lexend"}}>Tracks</Text>
         {tracks.map((track) => {
           if(track.album.images === 0){
             return(
