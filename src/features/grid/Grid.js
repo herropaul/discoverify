@@ -32,7 +32,7 @@ export default function Grid() {
 
   return (
     // Grid Container
-    <div className="">
+    <div className="flex justify-center">
       {isNarrowScreen 
       ?
       <ArtistsGrid artists={artists}/>
