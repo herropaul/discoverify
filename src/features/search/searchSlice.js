@@ -37,7 +37,6 @@ export const getArtistByQuery = createAsyncThunk(
   }
 );
 
-
 const artistsSlice = createSlice({
   name: "artists",
   initialState,
@@ -59,6 +58,4 @@ const artistsSlice = createSlice({
   },
 });
 
-
 export default artistsSlice.reducer;
-
