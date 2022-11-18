@@ -53,7 +53,7 @@ export default function Grid() {
           <ArtistsGrid artists={artists} />
         </Flex>
       ) : (
-        <Flex className="flex-col mt-20">
+        <Flex className="flex-col mt-10">
           <Center className="">
             <Link to="/">
               <Text
