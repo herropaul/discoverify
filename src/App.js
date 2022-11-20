@@ -98,7 +98,12 @@ function App() {
       >
         <Text>
           Built with ❤️ by{" "}
-          <Link color="green.300" href="https://github.com/herropaul">
+          <Link
+            color="green.300"
+            href="https://github.com/herropaul"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             herropaul
           </Link>
         </Text>
