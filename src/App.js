@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, Center, Heading, Link } from "@chakra-ui/react";
+import { Text, Center, Heading, Link, transition } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import "./App.css";
 import SearchInput from "../src/features/search/SearchInput";
 import { Link as ReactRouterLink, Outlet } from "react-router-dom";
@@ -13,25 +14,82 @@ function App() {
       className="h-screen flex flex-col justify-center"
     >
       <main className="mt-auto mb-auto">
-        <Heading
-          as="h1"
-          size="3xl"
-          className=" text-white text-center"
-          style={{ fontFamily: "Lexend" }}
+        {/* Animating Header */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: -100,
+          }}
+          animate={{
+            duration: 1,
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 1,
+            ease: [0.6, 0.05, -0.01, 0.9],
+          }}
         >
-          Discover your new artists and music
-        </Heading>
+          <Heading
+            as="h1"
+            size="3xl"
+            className=" text-white text-center"
+            style={{ fontFamily: "Lexend" }}
+          >
+            Discover your new{" "}
+            <Text className="" as="span">
+              artists
+            </Text>{" "}
+            and <Text as="span">music</Text>
+          </Heading>
+        </motion.div>
         <Center className="pt-4">
           <ReactRouterLink to="/">
-            <Text
-              className="text-3xl font-bold text-white"
-              style={{ fontFamily: "Lexend" }}
+            {/* Animating Discoverify title */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 100,
+              }}
+              animate={{
+                duration: 1,
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.6,
+                duration: 1,
+                ease: [0.6, 0.05, -0.01, 0.9],
+              }}
             >
-              Discoverify
-            </Text>
+              <Text
+                className="text-3xl font-bold text-white"
+                style={{ fontFamily: "Lexend" }}
+              >
+                Discoverify
+              </Text>
+            </motion.div>
           </ReactRouterLink>
         </Center>
-        <SearchInput />
+        {/* Animating Search Input */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 200,
+          }}
+          animate={{
+            opacity: 1,
+            duration: 2,
+            y: 0,
+          }}
+          transition={{
+            delay: 0.8,
+            duration: 1,
+            ease: [0.6, 0.05, -0.01, 0.9],
+          }}
+        >
+          <SearchInput />
+        </motion.div>
         <Outlet />
       </main>
       <footer
