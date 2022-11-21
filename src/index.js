@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/results",
+    path: "/results/:artist",
     element: <Grid />,
     errorElement: <ErrorPage />,
   },

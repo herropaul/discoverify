@@ -18,12 +18,11 @@ export default function SearchInput() {
 
   const handleSubmit = (e) => {
     if (query === "") {
-      navigate("/");
+      e.preventDefault();
     } else {
       e.preventDefault();
       dispatch(getArtistByQuery(query));
-      //dispatch(getTrackByQuery(query));
-      navigate("/results");
+      navigate(`/results/${query}`);
     }
   };
 
