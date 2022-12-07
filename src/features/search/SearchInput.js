@@ -1,5 +1,12 @@
-import { Input, Flex, FormControl, Button } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import {
+  Input,
+  Flex,
+  FormControl,
+  Button,
+  InputGroup,
+  InputRightElement,
+} from "@chakra-ui/react";
+import { SearchIcon, CloseIcon } from "@chakra-ui/icons";
 import { Text } from "@chakra-ui/react";
 import React, { useState, useEffect, useCallback } from "react";
 import { getArtistByQuery } from "./searchArtistsSlice";
@@ -47,21 +54,32 @@ export default function SearchInput() {
     //console.log("Clicked: ", visible);
   };
 
+  const clearSearch = () => {
+    setQuery("");
+  };
+
   return (
     <Flex textAlign="center" m={0}>
       <form className="flex-col" onSubmit={handleSubmit}>
         <FormControl className=" flex flex-row">
-          <Input
-            color="white"
-            borderColor="#07d88c"
-            mb={5}
-            type="text"
-            onChange={handleChange}
-            value={query}
-            placeholder="Enter artist"
-            _placeholder={{ opacity: 1, color: "white" }}
-            size="md"
-          />
+          <InputGroup>
+            <Input
+              color="white"
+              borderColor="#07d88c"
+              mb={5}
+              type="text"
+              onChange={handleChange}
+              value={query}
+              placeholder="Enter artist"
+              _placeholder={{ opacity: 1, color: "white" }}
+              size="md"
+            />
+            {query !== "" && (
+              <InputRightElement
+                children={<CloseIcon color="white" onClick={clearSearch} />}
+              />
+            )}
+          </InputGroup>
           <Button
             mx={1}
             colorScheme="green"
