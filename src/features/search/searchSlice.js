@@ -1,28 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import SpotifyWebApi from "spotify-web-api-js";
-
-const client_id = process.env.REACT_APP_CLIENT_ID;
-const client_secret = process.env.REACT_APP_CLIENT_SECRET;
+import { fetchRequest } from "../search/searchArtistsSlice";
 
 const initialState = {
   loading: false,
-  artists: [],
+  onChangeArtists: [],
   error: "",
 };
 
-export const fetchRequest = () => {
-  return fetch("https://accounts.spotify.com/api/token", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-      Authorization: "Basic " + btoa(client_id + ":" + client_secret),
-    },
-    body: "grant_type=client_credentials",
-  });
-};
-
-export const getArtistByQuery = createAsyncThunk(
-  "search/getArtistByQuery",
+export const searchArtists = createAsyncThunk(
+  "search/searchArtists",
   (query) => {
     return fetchRequest()
       .then((result) => result.json())
@@ -31,31 +18,30 @@ export const getArtistByQuery = createAsyncThunk(
         const spotify = new SpotifyWebApi();
 
         spotify.setAccessToken(token);
-        return spotify.searchArtists(query, { limit: 8, offset: 0 });
+        return spotify.search(query, ["artist"]);
       })
       .then((response) => response?.artists?.items);
   }
 );
 
-const artistsSlice = createSlice({
-  name: "artists",
+const searchSlice = createSlice({
+  name: "onChangeArtists",
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(getArtistByQuery.pending, (state) => {
+    builder.addCase(searchArtists.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(getArtistByQuery.fulfilled, (state, action) => {
+    builder.addCase(searchArtists.fulfilled, (state, action) => {
       state.loading = false;
-      //console.log("Payload: " + action.payload);
-      state.artists = action.payload;
+      state.onChangeArtists = action.payload;
       state.error = "";
     });
-    builder.addCase(getArtistByQuery.rejected, (state, action) => {
+    builder.addCase(searchArtists.rejected, (state, action) => {
       state.loading = false;
-      state.artists = [];
+      state.onChangeArtists = [];
       state.error = action.error.message;
     });
   },
 });
 
-export default artistsSlice.reducer;
+export default searchSlice.reducer;

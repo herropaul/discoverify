@@ -13,7 +13,7 @@ function App() {
       style={{ background: "#121212" }}
       className="h-screen flex flex-col justify-center"
     >
-      <main className="mt-auto mb-auto">
+      <main className="mt-auto mb-auto h-56">
         {/* Animating Header */}
         <motion.div
           initial={{
